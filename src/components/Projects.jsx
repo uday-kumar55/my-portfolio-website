@@ -403,9 +403,9 @@ function ProjectMockup({ id }) {
 }
 
 const projectScreenshots = {
-  'book-hub': 'https://vitreous-rose-1oi92cikhd.edgeone.app/image_2026-05-28_231631668.png',
-  'luxury-fashion': 'https://delicate-lavender-yslgubxt49.edgeone.app/image_2026-05-28_231755996.png',
-  'foodhub-munch': 'https://reliable-copper-m5ooza4zqa.edgeone.app/image_2026-05-28_231933118.png',
+  'book-hub': '/bookhub.png',
+  'luxury-fashion': '/fashion.png',
+  'foodhub-munch': '/foodhub.png',
 };
 
 function ProjectItem({ project, index }) {
