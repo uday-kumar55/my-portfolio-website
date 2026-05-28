@@ -1,0 +1,124 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@300;400;500;600&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Playfair Display", Georgia, serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  
+  --color-paper-50: rgba(253, 252, 251, 0.45);   /* Glass trans Alabaster luxury cream */
+  --color-paper-100: rgba(255, 255, 255, 0.65);  /* Glass trans Pure white crisp cards */
+  --color-paper-200: rgba(245, 238, 223, 0.55);  /* Warm ivory linen borders */
+  --color-paper-300: rgba(231, 221, 201, 0.7);   /* Soft silk dividers */
+  --color-paper-400: #cfc1aa;  /* Vintage gold-tinged focus edges */
+
+  --color-ink-950: #1b1612;    /* Warm espresso black headlines */
+  --color-ink-900: #2e2620;    /* Antique charcoal body text */
+  --color-ink-700: #5a4e45;    /* Luxury linen gray secondary prose */
+  --color-ink-500: #8d7a6a;    /* Soft beige-brown labels and captions */
+  
+  --color-gold-500: #e4c16a;   /* Champagne gold light accent */
+  --color-gold-600: #c6a147;   /* Classic luxury gold prime colors */
+  --color-gold-700: #9e7a2b;   /* Antique classic gold highlights */
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    background: linear-gradient(180deg, #fdfcfb 0%, #eddcb9 100%);
+    background-attachment: fixed;
+    color: var(--color-ink-900);
+    min-height: 100vh;
+  }
+  
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #faf6ee;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: rgba(198, 161, 71, 0.25);
+    border-radius: 9999px;
+    border: 2px solid #faf6ee;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-gold-600);
+  }
+  
+  ::selection {
+    background-color: rgba(198, 161, 71, 0.15);
+    color: var(--color-ink-950);
+  }
+}
+
+/* Beautiful Elegant Custom Modern Styles */
+.glow-card-blue:hover {
+  box-shadow: 0 10px 30px -10px rgba(198, 161, 71, 0.12);
+  border-color: var(--color-gold-500);
+}
+
+.custom-grid-pattern {
+  background-size: 30px 30px;
+  background-image: 
+    linear-gradient(to right, rgba(141, 122, 106, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(141, 122, 106, 0.04) 1px, transparent 1px);
+}
+
+.glass-pill {
+  background: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.paper-card {
+  background-color: var(--color-paper-100);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--color-paper-200);
+  box-shadow: 0 4px 30px rgba(141, 122, 106, 0.03);
+}
+
+/* Glassy keyframe animations */
+@keyframes float-slow-1 {
+  0%, 100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  50% {
+    transform: translate(30px, -45px) scale(1.1);
+  }
+}
+
+@keyframes float-slow-2 {
+  0%, 100% {
+    transform: translate(0px, 0px) scale(1.05);
+  }
+  50% {
+    transform: translate(-40px, 25px) scale(0.95);
+  }
+}
+
+@keyframes float-slow-3 {
+  0%, 100% {
+    transform: translate(0px, 0px) scale(1.02);
+  }
+  50% {
+    transform: translate(25px, 35px) scale(1.08);
+  }
+}
+
+.animate-float-1 {
+  animation: float-slow-1 20s infinite ease-in-out;
+}
+
+.animate-float-2 {
+  animation: float-slow-2 24s infinite ease-in-out;
+}
+
+.animate-float-3 {
+  animation: float-slow-3 22s infinite ease-in-out;
+}
