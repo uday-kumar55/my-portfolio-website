@@ -40,7 +40,7 @@ export default function Skills() {
         {/* Symmetrical Luxury Section Header */}
         <div className="text-center mb-16 max-w-xl mx-auto flex flex-col items-center">
           <span className="text-[10px] uppercase tracking-[0.25em] text-gold-700 mb-3 font-mono font-bold">
-            02 / TECHNICAL MATRIX
+            01 / TECHNICAL MATRIX
           </span>
           <motion.h3
             initial={{ opacity: 0, y: 15 }}

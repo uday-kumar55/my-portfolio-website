@@ -36,11 +36,11 @@ export default function App() {
         
         <main className="flex-grow">
           <Hero />
-          <About />
           <Skills />
           <Education />
           <Projects />
           <Credentials />
+          <About />
           <Sandbox />
           <Contact />
         </main>

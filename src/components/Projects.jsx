@@ -529,7 +529,7 @@ export default function Projects() {
         {/* Showcase Header */}
         <div className="text-center mb-20">
           <h2 className="text-[10px] uppercase tracking-[0.25em] text-gold-700 mb-2 font-mono font-bold flex items-center justify-center gap-2">
-            05 / EXPERIMENTAL WORKS
+            03 / EXPERIMENTAL WORKS
           </h2>
           <motion.h3
             initial={{ opacity: 0, y: 20 }}

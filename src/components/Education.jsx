@@ -13,7 +13,7 @@ export default function Education() {
         {/* Academic section descriptor */}
         <div className="text-center mb-16">
           <h2 className="text-[10px] uppercase tracking-[0.25em] text-gold-700 mb-2 font-mono font-bold">
-            03 / CHRONOLOGY & DEGREES
+            02 / CHRONOLOGY & DEGREES
           </h2>
           <motion.h3
             initial={{ opacity: 0, y: 15 }}

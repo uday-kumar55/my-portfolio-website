@@ -31,7 +31,7 @@ export default function Sandbox() {
         {/* Symmetrical Header */}
         <div className="text-center mb-16 max-w-xl mx-auto flex flex-col items-center">
           <span className="text-[10px] uppercase tracking-[0.25em] text-gold-700 mb-3 font-mono font-bold">
-            04 / INTERACTIVE PLAYGROUND
+            06 / INTERACTIVE PLAYGROUND
           </span>
           <motion.h3
             initial={{ opacity: 0, y: 15 }}

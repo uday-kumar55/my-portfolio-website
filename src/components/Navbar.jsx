@@ -4,11 +4,12 @@ import { Menu, X, Github, Linkedin, ArrowRight } from 'lucide-react';
 import { personalInfo } from '../data';
 
 const navItems = [
-  { label: 'About', href: '#about' },
   { label: 'Skills', href: '#skills' },
   { label: 'Education', href: '#education' },
-  { label: 'Sandbox', href: '#sandbox' },
   { label: 'Projects', href: '#projects' },
+  { label: 'Certifications', href: '#credentials' },
+  { label: 'About', href: '#about' },
+  { label: 'Sandbox', href: '#sandbox' },
   { label: 'Contact', href: '#contact' },
 ];
 

@@ -16,7 +16,7 @@ export default function About() {
          {/* Symmetrical Luxury Section Header */}
         <div className="flex flex-col items-center mb-16">
           <span className="text-[10px] uppercase tracking-[0.25em] text-gold-700 mb-3 font-mono font-bold">
-            01 / PORTRAIT PROFILE
+            05 / PORTRAIT PROFILE
           </span>
           <motion.h3
             initial={{ opacity: 0, y: 15 }}

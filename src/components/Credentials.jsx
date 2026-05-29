@@ -13,7 +13,7 @@ export default function Credentials() {
         {/* Editorial Section Headers */}
         <div className="text-center mb-16 max-w-xl mx-auto border-b border-paper-200 pb-6">
           <h2 className="text-[10px] uppercase tracking-[0.25em] text-gold-700 mb-2 font-mono font-bold">
-            06 / AWARDS & CERTIFICATIONS
+            04 / AWARDS & CERTIFICATIONS
           </h2>
           <motion.h3
             initial={{ opacity: 0, y: 15 }}
