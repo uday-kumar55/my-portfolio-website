@@ -1,7 +1,8 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Menu, X, Github, Linkedin, ArrowRight } from 'lucide-react';
+import { Menu, X, Github, Linkedin, Sun, Moon, ArrowRight } from 'lucide-react';
 import { personalInfo } from '../data';
+import { useTheme } from '../context/ThemeContext';
 
 const navItems = [
   { label: 'Skills', href: '#skills' },
@@ -17,27 +18,32 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [visible, setVisible] = useState(true);
+  const { isDark, toggleTheme } = useTheme();
+  const lastScrollY = useRef(0);
 
   useEffect(() => {
-    let lastY = window.scrollY;
-    
-    const handleScroll = () => {
-      const currentY = window.scrollY;
-      setIsScrolled(currentY > 20);
+    lastScrollY.current = window.scrollY;
+    setIsScrolled(window.scrollY > 20);
 
-      if (currentY < 50) {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      setIsScrolled(currentScrollY > 20);
+
+      if (currentScrollY < 50) {
         setVisible(true);
-      } else if (currentY > lastY + 5) {
-        // Scrolling down: hide menu (only if mobile menu is not open)
-        if (!isOpen) {
+      } else {
+        const diff = currentScrollY - lastScrollY.current;
+        // Scroll down threshold of 10px to hide
+        if (diff > 10 && !isOpen) {
           setVisible(false);
+        } 
+        // Scroll up threshold of 10px to show
+        else if (diff < -10) {
+          setVisible(true);
         }
-      } else if (currentY < lastY - 5) {
-        // Scrolling up: show menu
-        setVisible(true);
       }
-      
-      lastY = currentY;
+
+      lastScrollY.current = currentScrollY;
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -52,7 +58,7 @@ export default function Navbar() {
       id="main-navbar"
       className={`fixed top-0 left-0 w-full z-50 transition-colors duration-300 ${
         isScrolled
-          ? 'bg-[#fdfcfb]/95 backdrop-blur-md border-b border-paper-200/80 shadow-sm'
+          ? 'bg-navbar-bg backdrop-blur-md border-b border-paper-200/80 shadow-sm'
           : 'bg-transparent'
       }`}
     >
@@ -94,6 +100,20 @@ export default function Navbar() {
             <div className="h-4 w-[1px] bg-paper-300" />
 
             <div className="flex items-center space-x-4">
+              {/* Luxury Dynamic Theme Toggle Button */}
+              <motion.button
+                onClick={toggleTheme}
+                whileHover={{ scale: 1.1, rotate: 12 }}
+                whileTap={{ scale: 0.95 }}
+                id="desktop-theme-toggle"
+                className="text-ink-500 hover:text-ink-950 transition-colors cursor-pointer p-1.5 rounded-lg border border-transparent hover:border-paper-200 hover:bg-paper-100/50 flex items-center justify-center"
+                aria-label="Toggle visual theme"
+              >
+                {isDark ? <Sun size={15} className="text-gold-500" /> : <Moon size={15} />}
+              </motion.button>
+
+              <div className="h-4 w-[1px] bg-paper-300" />
+
               <motion.a
                 href={personalInfo.github}
                 target="_blank"
@@ -145,7 +165,7 @@ export default function Navbar() {
             exit={{ opacity: 0, height: 0 }}
             transition={{ type: "spring", stiffness: 150, damping: 18 }}
             id="mobile-navigation-panel"
-            className="md:hidden bg-paper-50 border-b border-paper-200"
+            className="md:hidden bg-navbar-bg/98 backdrop-blur-md border-b border-paper-200"
           >
             <div className="px-6 py-5 space-y-4">
               {navItems.map((item) => (
@@ -160,27 +180,48 @@ export default function Navbar() {
                   <span className="text-gold-600 mr-2">/</span>{item.label}
                 </motion.a>
               ))}
-              <div className="pt-4 border-t border-paper-200 flex justify-start space-x-6">
-                <a
-                  href={personalInfo.github}
-                  target="_blank"
-                  rel="noreferrer"
-                  id="mobile-github-link"
-                  className="text-ink-500 hover:text-ink-950 transition-colors flex items-center space-x-2 cursor-pointer"
+              <div className="pt-4 border-t border-paper-200 flex items-center justify-between">
+                <div className="flex space-x-4">
+                  <a
+                    href={personalInfo.github}
+                    target="_blank"
+                    rel="noreferrer"
+                    id="mobile-github-link"
+                    className="text-ink-500 hover:text-ink-950 transition-colors flex items-center space-x-2 cursor-pointer"
+                  >
+                    <Github size={14} />
+                    <span className="text-[10px] font-mono tracking-wider uppercase">GitHub</span>
+                  </a>
+                  <a
+                    href={personalInfo.linkedin}
+                    target="_blank"
+                    rel="noreferrer"
+                    id="mobile-linkedin-link"
+                    className="text-ink-500 hover:text-ink-950 transition-colors flex items-center space-x-2 cursor-pointer"
+                  >
+                    <Linkedin size={14} />
+                    <span className="text-[10px] font-mono tracking-wider uppercase">LinkedIn</span>
+                  </a>
+                </div>
+
+                <motion.button
+                  onClick={toggleTheme}
+                  whileTap={{ scale: 0.95 }}
+                  id="mobile-theme-toggle"
+                  className="text-ink-500 hover:text-ink-950 transition-colors cursor-pointer px-3 py-1.5 rounded-lg border border-paper-200 bg-paper-100 flex items-center space-x-1.5 text-[10px] font-mono tracking-wider uppercase"
                 >
-                  <Github size={14} />
-                  <span className="text-[10px] font-mono tracking-wider uppercase">GitHub</span>
-                </a>
-                <a
-                  href={personalInfo.linkedin}
-                  target="_blank"
-                  rel="noreferrer"
-                  id="mobile-linkedin-link"
-                  className="text-ink-500 hover:text-ink-950 transition-colors flex items-center space-x-2 cursor-pointer"
-                >
-                  <Linkedin size={14} />
-                  <span className="text-[10px] font-mono tracking-wider uppercase">LinkedIn</span>
-                </a>
+                  {isDark ? (
+                    <>
+                      <Sun size={12} className="text-gold-500" />
+                      <span>LIGHT</span>
+                    </>
+                  ) : (
+                    <>
+                      <Moon size={12} />
+                      <span>DARK</span>
+                    </>
+                  )}
+                </motion.button>
               </div>
             </div>
           </motion.div>

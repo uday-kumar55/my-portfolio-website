@@ -20,6 +20,10 @@
   --color-gold-500: #e4c16a;   /* Champagne gold light accent */
   --color-gold-600: #c6a147;   /* Classic luxury gold prime colors */
   --color-gold-700: #9e7a2b;   /* Antique classic gold highlights */
+  
+  --color-navbar-bg: rgba(253, 252, 251, 0.95);
+  --color-scrollbar-track: #faf6ee;
+  --color-scrollbar-thumb: rgba(198, 161, 71, 0.25);
 }
 
 @layer base {
@@ -31,18 +35,42 @@
     min-height: 100vh;
   }
   
+  html.dark {
+    background: linear-gradient(180deg, #0d0b09 0%, #1a1410 100%);
+    color: var(--color-ink-900);
+    
+    --color-paper-50: rgba(21, 18, 15, 0.65);
+    --color-paper-100: rgba(29, 24, 20, 0.85);
+    --color-paper-200: rgba(62, 51, 42, 0.45);
+    --color-paper-300: rgba(74, 61, 51, 0.6);
+    --color-paper-400: #aa977a;
+
+    --color-ink-950: #fcfaf7;
+    --color-ink-900: #f3ebe0;
+    --color-ink-700: #cfc3b5;
+    --color-ink-500: #9e8b7b;
+
+    --color-gold-500: #eec578;
+    --color-gold-600: #d4b055;
+    --color-gold-700: #bfa14b;
+
+    --color-navbar-bg: rgba(13, 11, 9, 0.95);
+    --color-scrollbar-track: #0d0b09;
+    --color-scrollbar-thumb: rgba(212, 176, 85, 0.25);
+  }
+  
   ::-webkit-scrollbar {
     width: 8px;
   }
   
   ::-webkit-scrollbar-track {
-    background: #faf6ee;
+    background: var(--color-scrollbar-track);
   }
   
   ::-webkit-scrollbar-thumb {
-    background: rgba(198, 161, 71, 0.25);
+    background: var(--color-scrollbar-thumb);
     border-radius: 9999px;
-    border: 2px solid #faf6ee;
+    border: 2px solid var(--color-scrollbar-track);
   }
   
   ::-webkit-scrollbar-thumb:hover {

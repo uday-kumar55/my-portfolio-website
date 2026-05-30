@@ -28,10 +28,13 @@ export default function App() {
         
         {/* Sphere 5 - Bottom Left Champagne Glow */}
         <div className="absolute bottom-[-10%] left-[15%] w-[400px] h-[400px] rounded-full bg-gradient-to-br from-gold-500/12 to-white/10 blur-[110px] animate-float-2" />
+        
+        {/* Backdrop filter overlaying background nodes, kept separate from content */}
+        <div className="absolute inset-0 backdrop-blur-[6px] pointer-events-none z-0" />
       </div>
 
       {/* Primary Components Blocks */}
-      <div className="relative z-10 flex flex-col min-h-screen backdrop-blur-[6px]">
+      <div className="relative z-10 flex flex-col min-h-screen">
         <Navbar />
         
         <main className="flex-grow">
