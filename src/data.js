@@ -6,6 +6,7 @@ export const personalInfo = {
   location: "Hyderabad, Telangana",
   github: "https://github.com/uday-kumar55",
   linkedin: "https://www.linkedin.com/in/uday-kumar55/",
+  resumeUrl: "https://drive.google.com/file/d/1zJb2K7x-7WDYWGv7E_d_V95R-XnnTtuJ/view?usp=sharing",
   summary: "Frontend Developer with hands-on experience in building responsive web applications using HTML, CSS, JavaScript, and React. Focused on performance optimization, modern UI/UX principles, and accessibility. Combining frontend expertise with cyber security knowledge to deliver secured, pixel-perfect user experiences."
 };
 

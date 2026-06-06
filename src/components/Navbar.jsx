@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Menu, X, Github, Linkedin, Sun, Moon, ArrowRight } from 'lucide-react';
+import { Menu, X, Github, Linkedin, Sun, Moon, ArrowRight, FileText } from 'lucide-react';
 import { personalInfo } from '../data';
 import { useTheme } from '../context/ThemeContext';
 
@@ -9,6 +9,7 @@ const navItems = [
   { label: 'Education', href: '#education' },
   { label: 'Projects', href: '#projects' },
   { label: 'Certifications', href: '#credentials' },
+  { label: 'Resume', href: '#resume' },
   { label: 'About', href: '#about' },
   { label: 'Sandbox', href: '#sandbox' },
   { label: 'Contact', href: '#contact' },
@@ -138,6 +139,22 @@ export default function Navbar() {
               >
                 <Linkedin size={15} />
               </motion.a>
+
+              <div className="h-4 w-[1px] bg-paper-300" />
+
+              <motion.a
+                href={personalInfo.resumeUrl}
+                target="_blank"
+                rel="noreferrer"
+                id="navbar-resume-download"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="px-2.5 py-1.5 border border-gold-600/30 text-gold-700 hover:text-ink-950 bg-gold-600/10 hover:bg-gold-600/15 text-[8.5px] font-mono font-bold tracking-widest uppercase transition-colors cursor-pointer rounded-md flex items-center space-x-1"
+                aria-label="View Resume document"
+              >
+                <FileText size={11} className="text-gold-600" />
+                <span>Resume PDF</span>
+              </motion.a>
             </div>
           </div>
 
@@ -201,6 +218,16 @@ export default function Navbar() {
                   >
                     <Linkedin size={14} />
                     <span className="text-[10px] font-mono tracking-wider uppercase">LinkedIn</span>
+                  </a>
+                  <a
+                    href={personalInfo.resumeUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    id="mobile-resume-link"
+                    className="text-gold-700 hover:text-gold-900 transition-colors flex items-center space-x-2 cursor-pointer font-bold"
+                  >
+                    <FileText size={14} />
+                    <span className="text-[10px] font-mono tracking-wider uppercase">Resume PDF</span>
                   </a>
                 </div>
 

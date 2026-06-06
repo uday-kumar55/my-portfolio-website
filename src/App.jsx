@@ -6,6 +6,7 @@ import Education from './components/Education';
 import Sandbox from './components/Sandbox';
 import Projects from './components/Projects';
 import Credentials from './components/Credentials';
+import Resume from './components/Resume';
 import Contact from './components/Contact';
 
 export default function App() {
@@ -43,6 +44,7 @@ export default function App() {
           <Education />
           <Projects />
           <Credentials />
+          <Resume />
           <About />
           <Sandbox />
           <Contact />
