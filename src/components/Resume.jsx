@@ -1,20 +1,44 @@
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
-import { FileText, Download, ExternalLink, Mail, Phone, MapPin, Github, Linkedin, Award, Briefcase, GraduationCap, Code, CheckCircle, Copy, Check } from 'lucide-react';
-import { personalInfo, skillsData, educationData, projectsData, certificationsData, awardsData } from '../data';
+import { useState } from "react";
+import { motion, AnimatePresence } from "motion/react";
+import {
+  FileText,
+  Download,
+  ExternalLink,
+  Mail,
+  Phone,
+  MapPin,
+  Github,
+  Linkedin,
+  Award,
+  Briefcase,
+  GraduationCap,
+  Code,
+  CheckCircle,
+  Copy,
+  Check,
+  Terminal,
+} from "lucide-react";
+import {
+  personalInfo,
+  skillsData,
+  educationData,
+  projectsData,
+  certificationsData,
+  awardsData,
+} from "../data";
 
 export default function Resume() {
-  const [activeTab, setActiveTab] = useState('all');
+  const [activeTab, setActiveTab] = useState("all");
   const [copied, setCopied] = useState(false);
 
   const handleCopyContact = () => {
     const contactInfo = `
 UDAY KUMAR
-Frontend Developer
+Hyderabad, Telangana
 Phone: ${personalInfo.phone}
 Email: ${personalInfo.email}
-GitHub: ${personalInfo.github}
 LinkedIn: ${personalInfo.linkedin}
+GitHub: ${personalInfo.github}
     `.trim();
 
     navigator.clipboard.writeText(contactInfo);
@@ -22,22 +46,23 @@ LinkedIn: ${personalInfo.linkedin}
     setTimeout(() => setCopied(false), 2000);
   };
 
-  // Sections config
   const tabs = [
-    { id: 'all', label: 'Complete CV' },
-    { id: 'skills', label: 'Core Skills' },
-    { id: 'projects', label: 'Key Projects' },
-    { id: 'education', label: 'Academic timeline' },
+    { id: "all", label: "Complete Resume" },
+    { id: "skills", label: "Technical Skills" },
+    { id: "projects", label: "Projects" },
+    { id: "education", label: "Education & Certifications" },
   ];
 
   return (
-    <section id="resume" className="relative py-24 px-6 sm:px-8 lg:px-12 bg-paper-50 border-b border-paper-200">
+    <section
+      id="resume"
+      className="relative py-24 px-6 sm:px-8 lg:px-12 bg-paper-50 border-b border-paper-200"
+    >
       {/* Background Ambience */}
       <div className="absolute top-1/3 right-10 w-[300px] h-[300px] bg-gold-500/5 rounded-full blur-[90px] pointer-events-none" />
       <div className="absolute bottom-1/4 left-10 w-[350px] h-[350px] bg-gold-600/5 rounded-full blur-[100px] pointer-events-none" />
 
       <div className="max-w-5xl mx-auto relative z-10">
-        
         {/* Symmetrical Header */}
         <div className="text-center mb-16 max-w-xl mx-auto flex flex-col items-center">
           <span className="text-[10px] uppercase tracking-[0.25em] text-gold-700 mb-3 font-mono font-bold">
@@ -53,12 +78,16 @@ LinkedIn: ${personalInfo.linkedin}
             My Resume.
           </motion.h3>
           <p className="text-xs sm:text-sm font-sans text-ink-700 font-light leading-relaxed">
-            Explore a digital summary of my credentials, academic timelines, and project works, or access the authentic print-ready PDF format.
+            Directly synchronized with my official resume document. Explore the
+            interactive breakdown or view the original PDF.
           </p>
         </div>
 
         {/* Tab Controls & Primary Download CTA */}
-        <div className="flex flex-col md:flex-row items-center justify-between gap-6 mb-10 pb-6 border-b border-paper-200" id="resume-controls">
+        <div
+          className="flex flex-col md:flex-row items-center justify-between gap-6 mb-10 pb-6 border-b border-paper-200"
+          id="resume-controls"
+        >
           {/* Tabs */}
           <div className="flex flex-wrap gap-2">
             {tabs.map((tab) => (
@@ -67,8 +96,8 @@ LinkedIn: ${personalInfo.linkedin}
                 onClick={() => setActiveTab(tab.id)}
                 className={`px-4 py-2 text-[10px] sm:text-xs font-mono font-semibold tracking-wider uppercase rounded-lg transition-all duration-300 ${
                   activeTab === tab.id
-                    ? 'bg-ink-950 text-paper-50 shadow-sm border border-transparent'
-                    : 'bg-paper-100 hover:bg-paper-200 text-ink-600 hover:text-ink-950 border border-paper-250/50'
+                    ? "bg-ink-950 text-paper-50 shadow-sm border border-transparent"
+                    : "bg-paper-100 hover:bg-paper-200 text-ink-600 hover:text-ink-950 border border-paper-250/50"
                 }`}
               >
                 {tab.label}
@@ -83,8 +112,12 @@ LinkedIn: ${personalInfo.linkedin}
               className="flex items-center justify-center space-x-1.5 px-3 py-2 bg-paper-100 hover:bg-paper-200 border border-paper-250 text-ink-900 rounded-lg text-[10px] font-mono tracking-wider uppercase transition-colors"
               title="Copy contact card to clipboard"
             >
-              {copied ? <Check size={12} className="text-emerald-600" /> : <Copy size={12} />}
-              <span>{copied ? 'Copied!' : 'Copy Contact'}</span>
+              {copied ? (
+                <Check size={12} className="text-emerald-600" />
+              ) : (
+                <Copy size={12} />
+              )}
+              <span>{copied ? "Copied Contact!" : "Copy Info"}</span>
             </button>
 
             <motion.a
@@ -111,42 +144,52 @@ LinkedIn: ${personalInfo.linkedin}
           {/* Double Elegant Gold Borders */}
           <div className="absolute inset-2 border border-gold-500/10 rounded-xl pointer-events-none z-0" />
 
-          <div className="p-8 sm:p-12 md:p-16 relative z-10 space-y-10">
-            
-            {/* Header Column: Title and Contacts */}
-            <div className="border-b border-paper-300 pb-8 flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
+          <div className="p-8 sm:p-12 md:p-14 relative z-10 space-y-9">
+            {/* Header: Title and Contacts */}
+            <div className="border-b border-paper-300 pb-7 text-center md:text-left flex flex-col md:flex-row justify-between items-center md:items-start gap-4">
               <div>
-                <h4 className="text-3xl sm:text-4xl font-display font-extrabold text-ink-950 tracking-tight leading-none">
+                <h4 className="text-3xl sm:text-4xl font-display font-extrabold text-ink-950 tracking-tight leading-tight">
                   {personalInfo.name.toUpperCase()}
                 </h4>
-                <p className="text-xs sm:text-sm font-mono text-gold-700 font-bold tracking-[0.2em] uppercase mt-2">
-                  Frontend Architect & Developer
-                </p>
-                <p className="text-[11px] font-sans text-ink-500 italic mt-3 max-w-xl font-light">
-                  &ldquo;Passionate about creating secured, highly optimized user interfaces, resolving client states, and providing pristine interface layouts.&rdquo;
+                <p className="text-xs font-mono text-gold-700 font-bold tracking-[0.2em] uppercase mt-1">
+                  {personalInfo.location}
                 </p>
               </div>
 
-              {/* Dynamic Compact Details Grid */}
-              <div className="text-[10px] font-mono font-medium text-ink-700 space-y-1.5 md:text-right w-full md:w-auto border-t md:border-t-0 border-paper-250 pt-4 md:pt-0">
-                <div className="flex items-center md:justify-end gap-2">
-                  <span className="text-ink-500">+{personalInfo.phone}</span>
-                  <Phone size={11} className="text-gold-600 order-first md:order-last" />
+              {/* Dynamic Compact Details */}
+              <div className="text-[10px] font-mono font-medium text-ink-700 space-y-1.5 md:text-right">
+                <div className="flex items-center justify-center md:justify-end gap-2">
+                  <span className="text-ink-600">{personalInfo.phone}</span>
+                  <Phone size={11} className="text-gold-600 hidden md:block" />
                 </div>
-                <div className="flex items-center md:justify-end gap-2">
-                  <span className="text-ink-500">{personalInfo.email}</span>
-                  <Mail size={11} className="text-gold-600 order-first md:order-last" />
-                </div>
-                <div className="flex items-center md:justify-end gap-2">
-                  <span className="text-ink-500">{personalInfo.location}</span>
-                  <MapPin size={11} className="text-gold-600 order-first md:order-last" />
-                </div>
-                <div className="flex items-center md:justify-end gap-3 pt-1">
-                  <a href={personalInfo.github} target="_blank" rel="noreferrer" className="text-gold-700 hover:text-ink-950 transition-colors">
-                    <Github size={13} />
+                <div className="flex items-center justify-center md:justify-end gap-2">
+                  <a
+                    href={`mailto:${personalInfo.email}`}
+                    className="text-ink-600 hover:text-gold-700 underline md:no-underline"
+                  >
+                    {personalInfo.email}
                   </a>
-                  <a href={personalInfo.linkedin} target="_blank" rel="noreferrer" className="text-gold-700 hover:text-ink-905 transition-colors">
-                    <Linkedin size={13} />
+                  <Mail size={11} className="text-gold-600 hidden md:block" />
+                </div>
+                <div className="flex items-center justify-center md:justify-end gap-3 pt-1">
+                  <a
+                    href={personalInfo.linkedin}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-gold-700 hover:text-ink-950 transition-colors flex items-center gap-1"
+                  >
+                    <Linkedin size={12} />
+                    <span>linkedin.com/in/uday-kumar55</span>
+                  </a>
+                  <span className="text-paper-300">&bull;</span>
+                  <a
+                    href={personalInfo.github}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-gold-700 hover:text-ink-950 transition-colors flex items-center gap-1"
+                  >
+                    <Github size={12} />
+                    <span>github.com/uday-kumar55</span>
                   </a>
                 </div>
               </div>
@@ -154,86 +197,108 @@ LinkedIn: ${personalInfo.linkedin}
 
             {/* Resume Body */}
             <AnimatePresence mode="wait">
-              {activeTab === 'all' && (
+              {activeTab === "all" && (
                 <motion.div
                   key="all"
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -10 }}
                   transition={{ duration: 0.3 }}
-                  className="space-y-10 focus:outline-none"
+                  className="space-y-9 focus:outline-none"
                 >
-                  {/* Summary / Profile Statement */}
-                  <div className="space-y-3">
-                    <h5 className="text-[10px] font-mono tracking-[0.25em] text-gold-700 font-bold uppercase flex items-center gap-2">
-                      <Briefcase size={12} /> Executive Summary
+                  {/* Summary */}
+                  <div className="space-y-2.5">
+                    <h5 className="text-[11px] font-display font-bold tracking-wider text-ink-950 uppercase border-b border-paper-250 pb-1 flex items-center gap-2">
+                      <span className="w-1.5 h-1.5 bg-gold-600 rounded-full" />
+                      Summary
                     </h5>
                     <p className="text-xs sm:text-sm font-sans text-ink-800 font-light leading-relaxed">
                       {personalInfo.summary}
                     </p>
                   </div>
 
-                  {/* Core Technical Highlights */}
-                  <div className="space-y-4">
-                    <h5 className="text-[10px] font-mono tracking-[0.25em] text-gold-700 font-bold uppercase flex items-center gap-2">
-                      <Code size={12} /> Technical Capabilities
+                  {/* Education */}
+                  <div className="space-y-3">
+                    <h5 className="text-[11px] font-display font-bold tracking-wider text-ink-950 uppercase border-b border-paper-250 pb-1 flex items-center gap-2">
+                      <span className="w-1.5 h-1.5 bg-gold-600 rounded-full" />
+                      Education
                     </h5>
-                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-                      {skillsData.map((category) => (
-                        <div key={category.title} className="bg-paper-50 p-4 border border-paper-200 rounded-xl">
-                          <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-ink-900 block mb-2.5 pb-1 border-b border-paper-200">
-                            {category.title}
-                          </span>
-                          <div className="flex flex-wrap gap-1.5">
-                            {category.skills.map((skill) => (
-                              <span key={skill} className="text-[9px] font-mono text-ink-700 bg-paper-100 border border-paper-200 px-2 py-0.5 rounded">
-                                {skill}
-                              </span>
-                            ))}
+                    <div className="space-y-3">
+                      {educationData.map((edu, idx) => (
+                        <div
+                          key={idx}
+                          className="flex flex-col sm:flex-row sm:items-start justify-between gap-1 text-left bg-paper-50 p-3.5 rounded-lg border border-paper-200"
+                        >
+                          <div>
+                            <span className="block text-xs font-sans font-bold text-ink-950">
+                              {edu.institution}
+                            </span>
+                            <span className="block text-[11px] font-sans text-ink-700 mt-0.5">
+                              {edu.degree}
+                              {edu.cgpa ? `, CGPA: ${edu.cgpa}` : ""}
+                              {edu.percentage
+                                ? `, Percentage: ${edu.percentage}`
+                                : ""}
+                            </span>
+                          </div>
+                          <div className="text-left sm:text-right mt-1 sm:mt-0">
+                            <span className="text-[10px] font-mono text-gold-700 font-semibold block">
+                              {edu.period}
+                            </span>
+                            <span className="text-[10px] font-sans text-ink-500 block">
+                              {edu.location}
+                            </span>
                           </div>
                         </div>
                       ))}
                     </div>
                   </div>
 
-                  {/* Major Projects Showcase */}
+                  {/* Projects */}
                   <div className="space-y-4">
-                    <h5 className="text-[10px] font-mono tracking-[0.25em] text-gold-700 font-bold uppercase flex items-center gap-2">
-                      <Award size={12} /> Key Project Systems
+                    <h5 className="text-[11px] font-display font-bold tracking-wider text-ink-950 uppercase border-b border-paper-250 pb-1 flex items-center gap-2">
+                      <span className="w-1.5 h-1.5 bg-gold-600 rounded-full" />
+                      Projects
                     </h5>
-                    <div className="space-y-4">
+                    <div className="space-y-5">
                       {projectsData.map((project) => (
-                        <div key={project.id} className="p-5 bg-paper-50 border border-paper-200 rounded-xl relative hover:border-gold-500/30 transition-colors">
-                          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2">
-                            <span className="text-xs font-display font-bold text-ink-950">
-                              {project.title}
-                            </span>
+                        <div
+                          key={project.id}
+                          className="p-4 bg-paper-50 border border-paper-200 rounded-xl relative hover:border-gold-500/30 transition-colors space-y-2"
+                        >
+                          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                             <div className="flex items-center gap-2">
-                              <span className="text-[8px] font-mono bg-amber-500/10 text-amber-800 border border-amber-600/10 px-2 py-0.5 rounded font-bold uppercase">
-                                Verified System
+                              <span className="text-xs sm:text-sm font-sans font-bold text-ink-950">
+                                {project.title}
                               </span>
-                              <a href={project.liveLink} target="_blank" rel="noreferrer" className="text-[8.5px] font-mono text-gold-700 hover:text-gold-900 font-bold flex items-center gap-0.5 underline">
-                                Live Demo <ExternalLink size={9} />
-                              </a>
                             </div>
-                          </div>
-                          
-                          {/* Tech List */}
-                          <div className="flex flex-wrap gap-1 mb-3">
-                            {project.techStack.map((tech) => (
-                              <span key={tech} className="text-[8.5px] font-mono text-gold-600 bg-gold-600/5 px-1.5 py-0.2 rounded border border-gold-600/5">
-                                {tech}
-                              </span>
-                            ))}
+                            <a
+                              href={project.liveLink}
+                              target="_blank"
+                              rel="noreferrer"
+                              className="text-[10px] font-mono text-gold-700 hover:text-gold-900 font-bold flex items-center gap-1 underline w-fit"
+                            >
+                              {project.type || "Live Demo"}{" "}
+                              <ExternalLink size={10} />
+                            </a>
                           </div>
 
-                          <p className="text-[11px] font-sans text-ink-700 leading-relaxed mb-3">
-                            {project.description}
-                          </p>
+                          {/* Tech Stack line */}
+                          <div className="text-[10.5px] font-sans text-ink-700 italic">
+                            <strong className="not-italic font-mono text-ink-900 font-semibold">
+                              Tech Stack:
+                            </strong>{" "}
+                            {project.techStack.join(", ")}
+                          </div>
 
-                          <ul className="space-y-1.5 text-[10.5px] font-sans text-ink-600 pl-4 list-disc marker:text-gold-650">
+                          <ul className="space-y-1.5 text-[11px] font-sans text-ink-700 pl-4 list-disc marker:text-gold-600 pt-1">
                             {project.detailedPoints.map((pt, idx) => (
-                              <li key={idx} className="font-light leading-relaxed">{pt}</li>
+                              <li
+                                key={idx}
+                                className="font-light leading-relaxed"
+                              >
+                                {pt}
+                              </li>
                             ))}
                           </ul>
                         </div>
@@ -241,66 +306,72 @@ LinkedIn: ${personalInfo.linkedin}
                     </div>
                   </div>
 
-                  {/* Chronology Grid: Education & Accolades */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-2">
-                    {/* Academic Degrees */}
-                    <div className="space-y-4">
-                      <h5 className="text-[10px] font-mono tracking-[0.25em] text-gold-700 font-bold uppercase flex items-center gap-2">
-                        <GraduationCap size={13} /> Educational Chronology
+                  {/* Technical Skills */}
+                  <div className="space-y-3">
+                    <h5 className="text-[11px] font-display font-bold tracking-wider text-ink-950 uppercase border-b border-paper-250 pb-1 flex items-center gap-2">
+                      <span className="w-1.5 h-1.5 bg-gold-600 rounded-full" />
+                      Technical Skills
+                    </h5>
+                    <div className="space-y-2 text-xs font-sans text-ink-800 bg-paper-50 p-4 rounded-xl border border-paper-200">
+                      {skillsData.map((category) => (
+                        <div
+                          key={category.title}
+                          className="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-3 py-1 border-b border-paper-150 last:border-0"
+                        >
+                          <strong className="font-sans font-bold text-ink-950 min-w-[190px] text-xs">
+                            {category.title}:
+                          </strong>
+                          <span className="text-ink-700 font-light text-xs">
+                            {category.skills.join(", ")}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Certifications & Achievements */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
+                    {/* Certifications */}
+                    <div className="space-y-3">
+                      <h5 className="text-[11px] font-display font-bold tracking-wider text-ink-950 uppercase border-b border-paper-250 pb-1 flex items-center gap-2">
+                        <span className="w-1.5 h-1.5 bg-gold-600 rounded-full" />
+                        Certifications
                       </h5>
-                      <div className="space-y-3">
-                        {educationData.map((edu, idx) => (
-                          <div key={idx} className="p-4 bg-paper-50 border border-paper-200 rounded-xl relative">
-                            <span className="text-[8.5px] font-mono text-gold-700 absolute top-4 right-4 bg-paper-100 border border-paper-250 py-0.5 px-2 rounded">
-                              {edu.period}
+                      <div className="space-y-2">
+                        {certificationsData.map((cert, idx) => (
+                          <div
+                            key={idx}
+                            className="p-3 bg-paper-50 border border-paper-200 rounded-xl flex items-center justify-between gap-3"
+                          >
+                            <span className="text-xs font-sans font-bold text-ink-950">
+                              {cert.title}
                             </span>
-                            <span className="block text-[11px] font-mono font-bold text-ink-950">{edu.degree}</span>
-                            <span className="block text-[10px] font-sans text-ink-500 font-medium mt-0.5">{edu.institution}</span>
-                            {edu.cgpa && (
-                              <span className="inline-block text-[9px] font-mono bg-paper-200/60 text-ink-800 px-2 py-0.5 rounded mt-2">
-                                CGPA: {edu.cgpa}
-                              </span>
-                            )}
-                            {edu.percentage && (
-                              <span className="inline-block text-[9px] font-mono bg-paper-200/60 text-ink-800 px-2 py-0.5 rounded mt-2">
-                                Percentage: {edu.percentage}
-                              </span>
-                            )}
+                            <a
+                              href={cert.link}
+                              target="_blank"
+                              rel="noreferrer"
+                              className="text-[10px] font-mono text-gold-700 hover:text-gold-900 font-bold flex items-center gap-1 underline whitespace-nowrap"
+                            >
+                              View Certificate <ExternalLink size={9} />
+                            </a>
                           </div>
                         ))}
                       </div>
                     </div>
 
-                    {/* Certs & Honors */}
-                    <div className="space-y-4">
-                      <h5 className="text-[10px] font-mono tracking-[0.25em] text-gold-700 font-bold uppercase flex items-center gap-2">
-                        <CheckCircle size={12} /> Achievements & Certs
+                    {/* Achievements */}
+                    <div className="space-y-3">
+                      <h5 className="text-[11px] font-display font-bold tracking-wider text-ink-950 uppercase border-b border-paper-250 pb-1 flex items-center gap-2">
+                        <span className="w-1.5 h-1.5 bg-gold-600 rounded-full" />
+                        Achievements
                       </h5>
-                      <div className="space-y-3">
-                        {/* Certs */}
-                        {certificationsData.map((cert, idx) => (
-                          <div key={`c-${idx}`} className="p-4 bg-paper-50 border border-paper-200 rounded-xl flex items-start justify-between gap-4">
-                            <div>
-                              <span className="text-[8px] font-mono uppercase bg-gold-600/10 text-gold-700 border border-gold-600/15 py-0.5 px-1.5 rounded font-bold">
-                                NPTEL certified
-                              </span>
-                              <span className="block text-[10.5px] font-mono font-bold text-ink-950 mt-1.5">{cert.title}</span>
-                              <span className="block text-[9.5px] font-sans text-ink-500 font-medium mt-0.5">{cert.issuer}</span>
-                            </div>
-                            <a href={cert.link} target="_blank" rel="noreferrer" className="text-[9px] font-mono text-gold-700 hover:text-gold-900 border-b border-gold-700 flex items-center gap-0.5 py-0.5">
-                              Verify <ExternalLink size={8} />
-                            </a>
-                          </div>
-                        ))}
-
-                        {/* Awards */}
+                      <div className="p-3 bg-paper-50 border border-paper-200 rounded-xl space-y-1">
                         {awardsData.map((award, idx) => (
-                          <div key={`a-${idx}`} className="p-4 bg-paper-50 border border-paper-200 rounded-xl">
-                            <div className="flex items-center gap-1.5 text-[8px] font-mono font-bold text-gold-700 uppercase bg-gold-600/10 border border-gold-600/15 py-0.5 px-2 rounded w-fit mb-2">
-                              Hackathon Rank #3
-                            </div>
-                            <span className="block text-[10.5px] font-mono font-extrabold text-ink-950">{award.title}</span>
-                            <p className="text-[10px] font-sans text-ink-650 leading-relaxed mt-1">{award.detail}</p>
+                          <div
+                            key={idx}
+                            className="text-xs font-sans text-ink-800 leading-relaxed"
+                          >
+                            &bull; {award.detail}
                           </div>
                         ))}
                       </div>
@@ -309,33 +380,49 @@ LinkedIn: ${personalInfo.linkedin}
                 </motion.div>
               )}
 
-              {activeTab === 'skills' && (
+              {activeTab === "skills" && (
                 <motion.div
                   key="skills"
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -10 }}
                   transition={{ duration: 0.3 }}
-                  className="space-y-8 min-h-[300px]"
+                  className="space-y-6 min-h-[300px]"
                 >
                   <div className="space-y-1">
-                    <h5 className="text-[10px] font-mono tracking-[0.25em] text-gold-700 font-bold uppercase">Technical Frameworks</h5>
-                    <p className="text-xs text-ink-500 font-light">Categorized skillset matrices focusing on web interfaces and cyber elements.</p>
+                    <h5 className="text-xs font-display font-bold uppercase tracking-wider text-ink-950">
+                      Technical Matrix
+                    </h5>
+                    <p className="text-xs text-ink-500 font-light">
+                      Categorized skillset matrices directly transcribed from
+                      the resume.
+                    </p>
                   </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {skillsData.map((category) => (
-                      <div key={category.title} className="p-6 bg-paper-50 border border-paper-200 rounded-xl space-y-4">
-                        <span className="text-xs font-mono font-bold uppercase text-ink-900 flex items-center gap-1.5">
-                          <span className="w-1.5 h-1.5 bg-gold-600 rounded-full" />
+                      <div
+                        key={category.title}
+                        className="p-5 bg-paper-50 border border-paper-200 rounded-xl space-y-3"
+                      >
+                        <span className="text-xs font-mono font-bold uppercase text-ink-900 flex items-center gap-2">
+                          <span className="w-2 h-2 bg-gold-600 rounded-full" />
                           {category.title}
                         </span>
-                        
-                        <div className="grid grid-cols-2 gap-2">
+
+                        <div className="flex flex-wrap gap-2">
                           {category.skills.map((skill) => (
-                            <div key={skill} className="p-3 bg-paper-100 border border-paper-200/80 rounded-lg flex items-center space-x-2">
-                              <CheckCircle size={10} className="text-gold-600 flex-shrink-0" />
-                              <span className="text-[10px] font-mono text-ink-800">{skill}</span>
+                            <div
+                              key={skill}
+                              className="px-3 py-1.5 bg-paper-100 border border-paper-200 rounded-lg flex items-center space-x-1.5"
+                            >
+                              <CheckCircle
+                                size={10}
+                                className="text-gold-600 flex-shrink-0"
+                              />
+                              <span className="text-xs font-sans font-medium text-ink-800">
+                                {skill}
+                              </span>
                             </div>
                           ))}
                         </div>
@@ -345,103 +432,160 @@ LinkedIn: ${personalInfo.linkedin}
                 </motion.div>
               )}
 
-              {activeTab === 'projects' && (
+              {activeTab === "projects" && (
                 <motion.div
                   key="projects"
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -10 }}
                   transition={{ duration: 0.3 }}
-                  className="space-y-8 min-h-[300px]"
+                  className="space-y-6 min-h-[300px]"
                 >
                   <div className="space-y-1">
-                    <h5 className="text-[10px] font-mono tracking-[0.25em] text-gold-700 font-bold uppercase">Strategic Web Projects</h5>
-                    <p className="text-xs text-ink-500 font-light">A summary of the core development projects deployed and verified.</p>
+                    <h5 className="text-xs font-display font-bold uppercase tracking-wider text-ink-950">
+                      Projects Showcase
+                    </h5>
+                    <p className="text-xs text-ink-500 font-light">
+                      All 3 key projects detailed with full descriptions and
+                      verified repositories/demos.
+                    </p>
                   </div>
 
-                  <div className="grid grid-cols-1 gap-6">
+                  <div className="grid grid-cols-1 gap-5">
                     {projectsData.map((project) => (
-                      <div key={project.id} className="p-6 bg-paper-50 border border-paper-200 rounded-xl relative">
-                        <div className="flex justify-between items-start gap-4 mb-3">
+                      <div
+                        key={project.id}
+                        className="p-5 bg-paper-50 border border-paper-200 rounded-xl relative space-y-3"
+                      >
+                        <div className="flex justify-between items-start gap-4">
                           <div>
-                            <span className="text-xs font-mono font-extrabold text-ink-950 uppercase">{project.title}</span>
+                            <span className="text-sm font-sans font-bold text-ink-950">
+                              {project.title}
+                            </span>
                             <div className="flex flex-wrap gap-1 mt-1.5">
                               {project.techStack.map((tech) => (
-                                <span key={tech} className="text-[8px] font-mono text-gold-750 bg-gold-600/5 px-2 py-0.5 rounded border border-gold-600/10">
+                                <span
+                                  key={tech}
+                                  className="text-[9px] font-mono text-gold-750 bg-gold-600/5 px-2 py-0.5 rounded border border-gold-600/10 font-medium"
+                                >
                                   {tech}
                                 </span>
                               ))}
                             </div>
                           </div>
-                          <a href={project.liveLink} target="_blank" rel="noreferrer" className="text-[9px] font-mono font-bold text-gold-700 hover:text-gold-900 bg-paper-100 hover:bg-paper-200 py-1.5 px-3 border border-paper-250 rounded-lg flex items-center gap-1 whitespace-nowrap">
-                            Live Demo <ExternalLink size={9} />
+                          <a
+                            href={project.liveLink}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="text-[10px] font-mono font-bold text-gold-700 hover:text-gold-900 bg-paper-100 hover:bg-paper-200 py-1.5 px-3 border border-paper-250 rounded-lg flex items-center gap-1 whitespace-nowrap"
+                          >
+                            {project.type || "Live Demo"}{" "}
+                            <ExternalLink size={9} />
                           </a>
                         </div>
-                        <p className="text-[11px] font-sans text-ink-700 leading-relaxed mb-4">{project.description}</p>
-                        <div className="bg-paper-100 p-4 rounded-lg border border-paper-200">
-                          <span className="text-[8.5px] font-mono font-bold text-gold-700 uppercase tracking-wider block mb-2">Technical Bulletins</span>
-                          <ul className="space-y-2 text-[10.5px] font-sans text-ink-650 pl-4 list-disc marker:text-gold-600">
-                            {project.detailedPoints.map((pt, idx) => (
-                              <li key={idx} className="font-light leading-relaxed">{pt}</li>
-                            ))}
-                          </ul>
-                        </div>
+                        <ul className="space-y-1.5 text-xs font-sans text-ink-700 pl-4 list-disc marker:text-gold-600 pt-1">
+                          {project.detailedPoints.map((pt, idx) => (
+                            <li
+                              key={idx}
+                              className="font-light leading-relaxed"
+                            >
+                              {pt}
+                            </li>
+                          ))}
+                        </ul>
                       </div>
                     ))}
                   </div>
                 </motion.div>
               )}
 
-              {activeTab === 'education' && (
+              {activeTab === "education" && (
                 <motion.div
                   key="education"
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -10 }}
                   transition={{ duration: 0.3 }}
-                  className="space-y-8 min-h-[300px]"
+                  className="space-y-6 min-h-[300px]"
                 >
                   <div className="space-y-1">
-                    <h5 className="text-[10px] font-mono tracking-[0.25em] text-gold-700 font-bold uppercase">Academic Portfolios</h5>
-                    <p className="text-xs text-ink-500 font-light">Timeline progression indicating degrees, certifications, and high rewards.</p>
+                    <h5 className="text-xs font-display font-bold uppercase tracking-wider text-ink-950">
+                      Academic Chronology & Certifications
+                    </h5>
+                    <p className="text-xs text-ink-500 font-light">
+                      Institutional timeline and accredited certifications.
+                    </p>
                   </div>
 
-                  <div className="relative border-l border-gold-600/20 pl-6 ml-4 space-y-8 py-3">
+                  <div className="space-y-4">
                     {educationData.map((edu, idx) => (
-                      <div key={idx} className="relative">
-                        {/* Bullet */}
-                        <div className="absolute -left-[31px] top-1.5 w-2.5 h-2.5 rounded-full bg-gold-600 border border-paper-50 shadow-[0_0_0_4px_rgba(198,161,71,0.15)]" />
-                        
-                        <div className="bg-paper-50 p-5 border border-paper-200 rounded-xl relative max-w-xl">
-                          <span className="text-[9px] font-mono font-bold text-gold-700 block mb-1">
-                            {edu.period}
+                      <div
+                        key={idx}
+                        className="p-4 bg-paper-50 border border-paper-200 rounded-xl flex flex-col sm:flex-row sm:items-center justify-between gap-2"
+                      >
+                        <div>
+                          <span className="block text-xs font-sans font-bold text-ink-950">
+                            {edu.institution}
                           </span>
-                          <span className="block text-xs font-display font-bold text-ink-950 uppercase">{edu.degree}</span>
-                          <span className="block text-[11px] font-sans text-ink-500 font-medium leading-normal mt-1">{edu.institution} &bull; {edu.location}</span>
+                          <span className="block text-[11px] font-sans text-ink-600 mt-0.5">
+                            {edu.degree} &bull; {edu.location}
+                          </span>
                           {edu.cgpa && (
-                            <span className="inline-block text-[9px] font-mono bg-paper-100 text-ink-850 px-2 py-0.5 rounded border border-paper-200 mt-2.5">
-                              Cumulative CGPA: {edu.cgpa}
+                            <span className="inline-block text-[9px] font-mono bg-paper-100 text-ink-850 px-2 py-0.5 rounded border border-paper-200 mt-2 font-bold">
+                              CGPA: {edu.cgpa}
                             </span>
                           )}
                           {edu.percentage && (
-                            <span className="inline-block text-[9px] font-mono bg-paper-100 text-ink-850 px-2 py-0.5 rounded border border-paper-200 mt-2.5">
+                            <span className="inline-block text-[9px] font-mono bg-paper-100 text-ink-850 px-2 py-0.5 rounded border border-paper-200 mt-2 font-bold">
                               Percentage: {edu.percentage}
                             </span>
                           )}
                         </div>
+                        <span className="text-[10px] font-mono font-bold text-gold-700 bg-gold-600/10 px-2.5 py-1 rounded border border-gold-600/20 w-fit">
+                          {edu.period}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Certifications Block */}
+                  <div className="pt-4 border-t border-paper-200">
+                    <span className="text-xs font-mono font-bold text-ink-950 uppercase tracking-wider block mb-3">
+                      Accredited Certifications
+                    </span>
+                    {certificationsData.map((cert, idx) => (
+                      <div
+                        key={idx}
+                        className="p-4 bg-paper-50 border border-paper-200 rounded-xl flex items-center justify-between"
+                      >
+                        <div>
+                          <span className="text-xs font-sans font-bold text-ink-950 block">
+                            {cert.title}
+                          </span>
+                          <span className="text-[10px] font-sans text-ink-500 block mt-0.5">
+                            {cert.issuer}
+                          </span>
+                        </div>
+                        <a
+                          href={cert.link}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="text-[10px] font-mono font-bold text-gold-700 hover:text-gold-900 underline flex items-center gap-1"
+                        >
+                          View Certificate <ExternalLink size={9} />
+                        </a>
                       </div>
                     ))}
                   </div>
                 </motion.div>
               )}
             </AnimatePresence>
-
           </div>
         </motion.div>
 
         {/* Informative Disclaimer */}
         <div className="text-center mt-6 text-[9.5px] font-mono tracking-wider text-ink-400">
-          * Dynamic representation of Uday Kumar&apos;s credentials. Synchronized with the verified Google Cloud index system.
+          * Synchronized with Uday Kumar&apos;s verified curriculum vitae.
         </div>
       </div>
     </section>
