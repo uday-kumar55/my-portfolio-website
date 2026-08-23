@@ -1,48 +1,52 @@
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@300;400;500;600&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@300;400;500;600&display=swap");
 @import "tailwindcss";
 
 @theme {
   --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
   --font-display: "Playfair Display", Georgia, serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
-  
-  --color-paper-50: rgba(253, 252, 251, 0.45);   /* Glass trans Alabaster luxury cream */
-  --color-paper-100: rgba(255, 255, 255, 0.65);  /* Glass trans Pure white crisp cards */
-  --color-paper-200: rgba(245, 238, 223, 0.55);  /* Warm ivory linen borders */
-  --color-paper-300: rgba(231, 221, 201, 0.7);   /* Soft silk dividers */
-  --color-paper-400: #cfc1aa;  /* Vintage gold-tinged focus edges */
 
-  --color-ink-950: #1b1612;    /* Warm espresso black headlines */
-  --color-ink-900: #2e2620;    /* Antique charcoal body text */
-  --color-ink-700: #5a4e45;    /* Luxury linen gray secondary prose */
-  --color-ink-500: #8d7a6a;    /* Soft beige-brown labels and captions */
-  
-  --color-gold-500: #e4c16a;   /* Champagne gold light accent */
-  --color-gold-600: #c6a147;   /* Classic luxury gold prime colors */
-  --color-gold-700: #9e7a2b;   /* Antique classic gold highlights */
-  
-  --color-navbar-bg: rgba(253, 252, 251, 0.95);
-  --color-scrollbar-track: #faf6ee;
-  --color-scrollbar-thumb: rgba(198, 161, 71, 0.25);
+  --color-paper-50: rgba(245, 239, 230, 0.65); /* Warm Alabaster Linen */
+  --color-paper-100: rgba(254, 251, 246, 0.88); /* Rich Ivory Card with Depth */
+  --color-paper-200: rgba(
+    226,
+    214,
+    194,
+    0.7
+  ); /* Soft Champagne Gold Linen Border */
+  --color-paper-300: rgba(208, 193, 168, 0.8); /* Refined Silk Divider */
+  --color-paper-400: #baa482; /* Vintage Gold Focus Edges */
+
+  --color-ink-950: #1a1410; /* Rich Espresso Charcoal Headlines */
+  --color-ink-900: #2c231b; /* Antique Charcoal Body Text */
+  --color-ink-700: #54473d; /* Warm Linen Umber Secondary Prose */
+  --color-ink-500: #847261; /* Soft Warm Sand Labels */
+
+  --color-gold-500: #d4a843; /* Champagne Gold Light Accent */
+  --color-gold-600: #b88d2d; /* Classic Luxury Gold */
+  --color-gold-700: #936e1c; /* Antique Classic Gold Highlights */
+
+  --color-navbar-bg: rgba(246, 240, 231, 0.92);
+  --color-scrollbar-track: #ede5d8;
+  --color-scrollbar-thumb: rgba(184, 141, 45, 0.3);
 }
 
 @layer base {
   html {
     scroll-behavior: smooth;
-    background: linear-gradient(180deg, #fdfcfb 0%, #eddcb9 100%);
-    background-attachment: fixed;
+    background: #f4eee3;
     color: var(--color-ink-900);
     min-height: 100vh;
   }
-  
+
   html.dark {
-    background: linear-gradient(180deg, #0d0b09 0%, #1a1410 100%);
+    background: #0c0a09;
     color: var(--color-ink-900);
-    
-    --color-paper-50: rgba(21, 18, 15, 0.65);
-    --color-paper-100: rgba(29, 24, 20, 0.85);
-    --color-paper-200: rgba(62, 51, 42, 0.45);
-    --color-paper-300: rgba(74, 61, 51, 0.6);
+
+    --color-paper-50: rgba(18, 15, 12, 0.7);
+    --color-paper-100: rgba(28, 23, 19, 0.88);
+    --color-paper-200: rgba(65, 53, 44, 0.55);
+    --color-paper-300: rgba(82, 67, 56, 0.7);
     --color-paper-400: #aa977a;
 
     --color-ink-950: #fcfaf7;
@@ -54,99 +58,142 @@
     --color-gold-600: #d4b055;
     --color-gold-700: #bfa14b;
 
-    --color-navbar-bg: rgba(13, 11, 9, 0.95);
-    --color-scrollbar-track: #0d0b09;
+    --color-navbar-bg: rgba(12, 10, 9, 0.92);
+    --color-scrollbar-track: #0c0a09;
     --color-scrollbar-thumb: rgba(212, 176, 85, 0.25);
   }
-  
+
   ::-webkit-scrollbar {
     width: 8px;
   }
-  
+
   ::-webkit-scrollbar-track {
     background: var(--color-scrollbar-track);
   }
-  
+
   ::-webkit-scrollbar-thumb {
     background: var(--color-scrollbar-thumb);
     border-radius: 9999px;
     border: 2px solid var(--color-scrollbar-track);
   }
-  
+
   ::-webkit-scrollbar-thumb:hover {
     background: var(--color-gold-600);
   }
-  
+
   ::selection {
-    background-color: rgba(198, 161, 71, 0.15);
+    background-color: rgba(184, 141, 45, 0.2);
     color: var(--color-ink-950);
   }
 }
 
 /* Beautiful Elegant Custom Modern Styles */
 .glow-card-blue:hover {
-  box-shadow: 0 10px 30px -10px rgba(198, 161, 71, 0.12);
+  box-shadow: 0 12px 35px -10px rgba(184, 141, 45, 0.22);
   border-color: var(--color-gold-500);
 }
 
 .custom-grid-pattern {
-  background-size: 30px 30px;
-  background-image: 
-    linear-gradient(to right, rgba(141, 122, 106, 0.04) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(141, 122, 106, 0.04) 1px, transparent 1px);
+  background-size: 32px 32px;
+  background-image:
+    linear-gradient(to right, rgba(184, 141, 45, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(184, 141, 45, 0.06) 1px, transparent 1px);
 }
 
 .glass-pill {
-  background: rgba(255, 255, 255, 0.45);
+  background: rgba(254, 251, 246, 0.65);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(226, 214, 194, 0.8);
 }
 
 .paper-card {
   background-color: var(--color-paper-100);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border: 1px solid var(--color-paper-200);
-  box-shadow: 0 4px 30px rgba(141, 122, 106, 0.03);
+  box-shadow: 0 8px 32px rgba(132, 114, 97, 0.06);
 }
 
-/* Glassy keyframe animations */
-@keyframes float-slow-1 {
-  0%, 100% {
-    transform: translate(0px, 0px) scale(1);
+/* Luxury Royal Ornaments & Animations */
+.royal-gold-glow {
+  text-shadow: 0 0 12px rgba(212, 168, 67, 0.35);
+}
+
+.dark .royal-gold-glow {
+  text-shadow: 0 0 16px rgba(238, 197, 120, 0.55);
+}
+
+/* Elegant Crown / Crest Separator */
+.royal-crest::before {
+  content: "";
+  display: block;
+  width: 40px;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--color-gold-500),
+    transparent
+  );
+  margin: 0 auto 10px;
+}
+
+/* Gold Shimmer Reflective Overlay Animation */
+@keyframes shimmerReflection {
+  0% {
+    background-position: -200% 0;
   }
-  50% {
-    transform: translate(30px, -45px) scale(1.1);
+  100% {
+    background-position: 200% 0;
   }
 }
 
-@keyframes float-slow-2 {
-  0%, 100% {
-    transform: translate(0px, 0px) scale(1.05);
+.shimmer-gold-btn {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(
+    120deg,
+    var(--color-ink-950) 0%,
+    rgba(45, 36, 28, 1) 40%,
+    var(--color-gold-600) 50%,
+    rgba(45, 36, 28, 1) 60%,
+    var(--color-ink-950) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmerReflection 6s infinite linear;
+  transition: all 0.3s ease;
+}
+
+.shimmer-gold-btn:hover {
+  background-size: 150% 100%;
+  box-shadow: 0 8px 24px rgba(184, 141, 45, 0.25);
+  border-color: var(--color-gold-500);
+}
+
+/* Classical double golden layout border */
+.double-gilded-border {
+  position: relative;
+}
+.double-gilded-border::after {
+  content: "";
+  position: absolute;
+  inset: 3px;
+  border: 0.5px solid rgba(184, 141, 45, 0.25);
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+/* Slow rotate */
+@keyframes spinSlow {
+  0% {
+    transform: rotate(0deg);
   }
-  50% {
-    transform: translate(-40px, 25px) scale(0.95);
+  100% {
+    transform: rotate(360deg);
   }
 }
 
-@keyframes float-slow-3 {
-  0%, 100% {
-    transform: translate(0px, 0px) scale(1.02);
-  }
-  50% {
-    transform: translate(25px, 35px) scale(1.08);
-  }
-}
-
-.animate-float-1 {
-  animation: float-slow-1 20s infinite ease-in-out;
-}
-
-.animate-float-2 {
-  animation: float-slow-2 24s infinite ease-in-out;
-}
-
-.animate-float-3 {
-  animation: float-slow-3 22s infinite ease-in-out;
+.animate-spin-slow {
+  animation: spinSlow 15s infinite linear;
 }

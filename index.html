@@ -8,21 +8,14 @@
       (function () {
         try {
           var saved = localStorage.getItem("theme");
-          var systemDark =
-            window.matchMedia &&
-            window.matchMedia("(prefers-color-scheme: dark)").matches;
-          if (saved === "dark" || (!saved && systemDark)) {
-            document.documentElement.classList.add("dark");
-          } else {
+          if (saved === "light") {
             document.documentElement.classList.remove("dark");
+          } else {
+            // Default to dark theme
+            document.documentElement.classList.add("dark");
           }
         } catch (e) {
-          if (
-            window.matchMedia &&
-            window.matchMedia("(prefers-color-scheme: dark)").matches
-          ) {
-            document.documentElement.classList.add("dark");
-          }
+          document.documentElement.classList.add("dark");
         }
       })();
     </script>

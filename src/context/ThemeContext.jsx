@@ -9,16 +9,10 @@ export function ThemeProvider({ children }) {
       if (savedTheme === "light" || savedTheme === "dark") {
         return savedTheme;
       }
-      // Default to device/system theme preference
-      if (
-        window.matchMedia &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches
-      ) {
-        return "dark";
-      }
-      return "light";
+      // Explicitly default to dark theme when opening website
+      return "dark";
     }
-    return "light";
+    return "dark";
   });
 
   useEffect(() => {
