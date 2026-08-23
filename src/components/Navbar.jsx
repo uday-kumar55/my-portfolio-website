@@ -1,18 +1,27 @@
-import { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
-import { Menu, X, Github, Linkedin, Sun, Moon, ArrowRight, FileText } from 'lucide-react';
-import { personalInfo } from '../data';
-import { useTheme } from '../context/ThemeContext';
+import { useState, useEffect, useRef } from "react";
+import { motion, AnimatePresence } from "motion/react";
+import {
+  Menu,
+  X,
+  Github,
+  Linkedin,
+  Sun,
+  Moon,
+  ArrowRight,
+  FileText,
+} from "lucide-react";
+import { personalInfo } from "../data";
+import { useTheme } from "../context/ThemeContext";
 
 const navItems = [
-  { label: 'Skills', href: '#skills' },
-  { label: 'Education', href: '#education' },
-  { label: 'Projects', href: '#projects' },
-  { label: 'Certifications', href: '#credentials' },
-  { label: 'Resume', href: '#resume' },
-  { label: 'About', href: '#about' },
-  { label: 'Sandbox', href: '#sandbox' },
-  { label: 'Contact', href: '#contact' },
+  { label: "Skills", href: "#skills" },
+  { label: "Education", href: "#education" },
+  { label: "Projects", href: "#projects" },
+  { label: "Certifications", href: "#credentials" },
+  { label: "Resume", href: "#resume" },
+  { label: "About", href: "#about" },
+  { label: "Sandbox", href: "#sandbox" },
+  { label: "Contact", href: "#contact" },
 ];
 
 export default function Navbar() {
@@ -37,7 +46,7 @@ export default function Navbar() {
         // Scroll down threshold of 10px to hide
         if (diff > 10 && !isOpen) {
           setVisible(false);
-        } 
+        }
         // Scroll up threshold of 10px to show
         else if (diff < -10) {
           setVisible(true);
@@ -47,8 +56,8 @@ export default function Navbar() {
       lastScrollY.current = currentScrollY;
     };
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
   }, [isOpen]);
 
   return (
@@ -59,24 +68,25 @@ export default function Navbar() {
       id="main-navbar"
       className={`fixed top-0 left-0 w-full z-50 transition-colors duration-300 ${
         isScrolled
-          ? 'bg-navbar-bg backdrop-blur-md border-b border-paper-200/80 shadow-sm'
-          : 'bg-transparent'
+          ? "bg-navbar-bg backdrop-blur-md border-b border-paper-200/80 shadow-sm"
+          : "bg-transparent"
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         <div className="flex items-center justify-between h-20">
-          
           {/* Logo with clean editorial display style */}
           <div className="flex items-center">
             <motion.a
-               href="#"
-               id="nav-logo"
-               whileHover={{ scale: 1.01 }}
-               whileTap={{ scale: 0.99 }}
-               className="flex items-center space-x-2 font-display font-medium text-ink-950 cursor-pointer"
+              href="#"
+              id="nav-logo"
+              whileHover={{ scale: 1.01 }}
+              whileTap={{ scale: 0.99 }}
+              className="flex items-center space-x-2 font-display font-medium text-ink-950 cursor-pointer"
             >
               <span className="w-1.5 h-1.5 bg-gold-600 rounded-full mr-1.5" />
-              <span className="font-semibold text-base sm:text-lg tracking-[0.25em]">{personalInfo.name.toUpperCase()}</span>
+              <span className="font-semibold text-base sm:text-lg tracking-[0.25em]">
+                {personalInfo.name.toUpperCase()}
+              </span>
             </motion.a>
           </div>
 
@@ -87,7 +97,7 @@ export default function Navbar() {
                 <li key={item.label}>
                   <motion.a
                     href={item.href}
-                    id={`nav-link-${item.label.toLowerCase().replace(/\s+/g, '-')}`}
+                    id={`nav-link-${item.label.toLowerCase().replace(/\s+/g, "-")}`}
                     whileHover={{ y: -1 }}
                     className="text-[10px] font-mono font-medium tracking-widest text-ink-500 hover:text-ink-950 uppercase transition-colors relative py-2 group cursor-pointer inline-block"
                   >
@@ -95,7 +105,7 @@ export default function Navbar() {
                     <span className="absolute bottom-0 left-0 w-0 h-[1.5px] bg-gold-600 transition-all duration-300 group-hover:w-full" />
                   </motion.a>
                 </li>
-               ))}
+              ))}
             </ul>
 
             <div className="h-4 w-[1px] bg-paper-300" />
@@ -110,7 +120,11 @@ export default function Navbar() {
                 className="text-ink-500 hover:text-ink-950 transition-colors cursor-pointer p-1.5 rounded-lg border border-transparent hover:border-paper-200 hover:bg-paper-100/50 flex items-center justify-center"
                 aria-label="Toggle visual theme"
               >
-                {isDark ? <Sun size={15} className="text-gold-500" /> : <Moon size={15} />}
+                {isDark ? (
+                  <Sun size={15} className="text-gold-500" />
+                ) : (
+                  <Moon size={15} />
+                )}
               </motion.button>
 
               <div className="h-4 w-[1px] bg-paper-300" />
@@ -178,7 +192,7 @@ export default function Navbar() {
         {isOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
+            animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ type: "spring", stiffness: 150, damping: 18 }}
             id="mobile-navigation-panel"
@@ -189,12 +203,13 @@ export default function Navbar() {
                 <motion.a
                   key={item.label}
                   href={item.href}
-                  id={`mobile-nav-link-${item.label.toLowerCase().replace(/\s+/g, '-')}`}
+                  id={`mobile-nav-link-${item.label.toLowerCase().replace(/\s+/g, "-")}`}
                   onClick={() => setIsOpen(false)}
                   whileTap={{ x: 2 }}
                   className="block text-xs font-mono tracking-widest uppercase text-ink-700 hover:text-ink-950 transition-colors py-2 cursor-pointer"
                 >
-                  <span className="text-gold-600 mr-2">/</span>{item.label}
+                  <span className="text-gold-600 mr-2">/</span>
+                  {item.label}
                 </motion.a>
               ))}
               <div className="pt-4 border-t border-paper-200 flex items-center justify-between">
@@ -207,7 +222,9 @@ export default function Navbar() {
                     className="text-ink-500 hover:text-ink-950 transition-colors flex items-center space-x-2 cursor-pointer"
                   >
                     <Github size={14} />
-                    <span className="text-[10px] font-mono tracking-wider uppercase">GitHub</span>
+                    <span className="text-[10px] font-mono tracking-wider uppercase">
+                      GitHub
+                    </span>
                   </a>
                   <a
                     href={personalInfo.linkedin}
@@ -217,7 +234,9 @@ export default function Navbar() {
                     className="text-ink-500 hover:text-ink-950 transition-colors flex items-center space-x-2 cursor-pointer"
                   >
                     <Linkedin size={14} />
-                    <span className="text-[10px] font-mono tracking-wider uppercase">LinkedIn</span>
+                    <span className="text-[10px] font-mono tracking-wider uppercase">
+                      LinkedIn
+                    </span>
                   </a>
                   <a
                     href={personalInfo.resumeUrl}
@@ -227,7 +246,9 @@ export default function Navbar() {
                     className="text-gold-700 hover:text-gold-900 transition-colors flex items-center space-x-2 cursor-pointer font-bold"
                   >
                     <FileText size={14} />
-                    <span className="text-[10px] font-mono tracking-wider uppercase">Resume PDF</span>
+                    <span className="text-[10px] font-mono tracking-wider uppercase">
+                      Resume PDF
+                    </span>
                   </a>
                 </div>
 

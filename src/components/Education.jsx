@@ -1,6 +1,6 @@
-import { motion } from 'motion/react';
-import { GraduationCap, Calendar, MapPin } from 'lucide-react';
-import { educationData } from '../data';
+import { motion } from "motion/react";
+import { GraduationCap, Calendar, MapPin } from "lucide-react";
+import { educationData } from "../data";
 
 export default function Education() {
   return (
@@ -9,7 +9,6 @@ export default function Education() {
       className="py-24 bg-paper-100 px-6 sm:px-8 lg:px-12 border-b border-paper-200"
     >
       <div className="max-w-4xl mx-auto text-left">
-        
         {/* Academic section descriptor */}
         <div className="text-center mb-16">
           <h2 className="text-[10px] uppercase tracking-[0.25em] text-gold-700 mb-2 font-mono font-bold">
@@ -18,7 +17,7 @@ export default function Education() {
           <motion.h3
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false, margin: "-60px" }}
             transition={{ duration: 0.6 }}
             id="education-title"
             className="text-4xl sm:text-5xl font-display font-bold text-ink-950 mb-2"
@@ -26,7 +25,8 @@ export default function Education() {
             Education.
           </motion.h3>
           <p className="mt-2 text-xs sm:text-sm font-sans text-ink-700 max-w-lg mx-auto text-center leading-relaxed font-light">
-            My academic journey, coursework focus points, and certified technical milestones.
+            My academic journey, coursework focus points, and certified
+            technical milestones.
           </p>
         </div>
 
@@ -37,18 +37,23 @@ export default function Education() {
               key={edu.degree}
               initial={{ opacity: 0, x: -15 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ type: "spring", stiffness: 80, damping: 13, delay: index * 0.1 }}
+              viewport={{ once: false, margin: "-50px" }}
+              transition={{
+                type: "spring",
+                stiffness: 80,
+                damping: 13,
+                delay: index * 0.08,
+              }}
               className="relative"
-              id={`edu-item-${edu.degree.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`}
+              id={`edu-item-${edu.degree.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`}
             >
               {/* Timeline marker with visual gold ring */}
-              <motion.span 
-                whileHover={{ 
+              <motion.span
+                whileHover={{
                   scale: 1.15,
-                  backgroundColor: "var(--color-gold-600)", 
+                  backgroundColor: "var(--color-gold-600)",
                   borderColor: "var(--color-gold-600)",
-                  color: "#ffffff"
+                  color: "#ffffff",
                 }}
                 className="absolute -left-[45px] top-1.5 flex items-center justify-center w-8 h-8 rounded-full bg-paper-100 border-2 border-gold-600 text-gold-700 z-20 cursor-pointer transition-all duration-300 shadow-sm"
               >
@@ -56,8 +61,8 @@ export default function Education() {
               </motion.span>
 
               {/* Education block container */}
-              <motion.div 
-                whileHover={{ 
+              <motion.div
+                whileHover={{
                   y: -2,
                   borderColor: "var(--color-gold-500)",
                 }}
@@ -87,15 +92,23 @@ export default function Education() {
 
                   {edu.cgpa && (
                     <div className="flex items-center space-x-1.5 bg-paper-50 text-ink-950 py-1 px-2.5 border border-paper-200 rounded-md">
-                      <span className="font-mono text-ink-500 text-[8.5px] tracking-widest uppercase font-bold">CGPA:</span>
-                      <strong className="font-bold text-[11px] text-gold-700">{edu.cgpa}</strong>
+                      <span className="font-mono text-ink-500 text-[8.5px] tracking-widest uppercase font-bold">
+                        CGPA:
+                      </span>
+                      <strong className="font-bold text-[11px] text-gold-700">
+                        {edu.cgpa}
+                      </strong>
                     </div>
                   )}
 
                   {edu.percentage && (
                     <div className="flex items-center space-x-1.5 bg-paper-50 text-ink-950 py-1 px-2.5 border border-paper-200 rounded-md">
-                      <span className="font-mono text-ink-500 text-[8.5px] tracking-widest uppercase font-bold">PERCENTAGE:</span>
-                      <strong className="font-bold text-[11px] text-gold-700">{edu.percentage}</strong>
+                      <span className="font-mono text-ink-500 text-[8.5px] tracking-widest uppercase font-bold">
+                        PERCENTAGE:
+                      </span>
+                      <strong className="font-bold text-[11px] text-gold-700">
+                        {edu.percentage}
+                      </strong>
                     </div>
                   )}
                 </div>
@@ -103,10 +116,21 @@ export default function Education() {
                 {/* Custom Coursework context */}
                 {edu.degree.includes("Cyber Security") && (
                   <div className="mt-6 pt-4 border-t border-paper-200 text-xs text-ink-700 font-sans leading-relaxed space-y-2 font-light">
-                    <p>Undergraduate coursework in Computer Science, Systems Engineering, and Security architecture, featuring:</p>
+                    <p>
+                      Undergraduate coursework in Computer Science, Systems
+                      Engineering, and Security architecture, featuring:
+                    </p>
                     <div className="flex flex-wrap gap-1.5 pt-1">
-                      {["Data Structures", "Secure Coding Principles", "Cryptography", "Database Schema Design"].map((course) => (
-                        <span key={course} className="text-[9px] font-mono bg-paper-50 px-2.5 py-1 text-ink-700 border border-paper-200 rounded-md font-semibold">
+                      {[
+                        "Data Structures",
+                        "Secure Coding Principles",
+                        "Cryptography",
+                        "Database Schema Design",
+                      ].map((course) => (
+                        <span
+                          key={course}
+                          className="text-[9px] font-mono bg-paper-50 px-2.5 py-1 text-ink-700 border border-paper-200 rounded-md font-semibold"
+                        >
                           {course}
                         </span>
                       ))}

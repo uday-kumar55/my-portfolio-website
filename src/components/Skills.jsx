@@ -38,7 +38,7 @@ export default function Skills() {
           <motion.h3
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false, margin: "-60px" }}
             transition={{ duration: 0.6 }}
             id="skills-title"
             className="text-4xl sm:text-5xl lg:text-6xl font-display font-medium text-ink-950 mb-3 tracking-tight"
@@ -61,8 +61,8 @@ export default function Skills() {
                 key={category.title}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
+                viewport={{ once: false, margin: "-40px" }}
+                transition={{ duration: 0.5, delay: index * 0.08 }}
                 className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 bg-paper-100 border border-paper-200/70 p-6 md:p-8 rounded-2xl shadow-sm hover:shadow-md transition-all duration-300"
                 id={`skill-row-${category.title.toLowerCase().replace(/\s+/g, "-")}`}
               >

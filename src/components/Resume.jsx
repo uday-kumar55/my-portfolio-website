@@ -71,7 +71,7 @@ GitHub: ${personalInfo.github}
           <motion.h3
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false, margin: "-60px" }}
             transition={{ duration: 0.6 }}
             className="text-4xl sm:text-5xl font-display font-medium text-ink-950 mb-3 tracking-tight"
           >
