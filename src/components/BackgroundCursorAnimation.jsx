@@ -25,8 +25,8 @@ export default function BackgroundCursorAnimation() {
     const IDLE_DELAY = 2600; // ms before ambient autonomous drift starts
 
     // Color definitions
-    // Dark: Luminous champagne & starlight gold (#f6d482 / #d4a843)
-    // Light: Rich warm amber & desert bronze (#b87e28 / #c98e32)
+    // Dark: Luminous celestial champagne & starlight gold (#f6d482 / #d4a843)
+    // Light: Radiant warm golden-amber sunlight & rich bronze-gold constellation (#c98e28 / #dfa234)
     const themeColors = isDark
       ? {
           lineR: 238,
@@ -35,20 +35,14 @@ export default function BackgroundCursorAnimation() {
           dotR: 246,
           dotG: 212,
           dotB: 130,
-          glowA: "rgba(245, 214, 150, 0.16)",
-          glowB: "rgba(212, 168, 67, 0.08)",
-          glowC: "rgba(212, 168, 67, 0)",
         }
       : {
-          lineR: 184,
-          lineG: 136,
-          lineB: 48,
-          dotR: 184,
-          dotG: 126,
-          dotB: 40,
-          glowA: "rgba(206, 148, 48, 0.17)",
-          glowB: "rgba(218, 166, 72, 0.07)",
-          glowC: "rgba(237, 229, 216, 0)",
+          lineR: 208,
+          lineG: 152,
+          lineB: 52,
+          dotR: 198,
+          dotG: 138,
+          dotB: 36,
         };
 
     const dotColor = (alpha) =>
@@ -85,7 +79,7 @@ export default function BackgroundCursorAnimation() {
           angle: Math.random() * Math.PI * 2,
           angleSpeed: (Math.random() - 0.5) * 0.012,
           speed: 0.12 + z * 0.32,
-          radius: (isDark ? 0.95 : 1.15) + z * (isDark ? 1.35 : 1.65),
+          radius: (isDark ? 0.95 : 1.3) + z * (isDark ? 1.35 : 1.7),
           phase: Math.random() * Math.PI * 2,
           phaseSpeed: 0.008 + Math.random() * 0.014,
           bokeh: z > 0.85,
@@ -189,7 +183,7 @@ export default function BackgroundCursorAnimation() {
       const speedBoost = Math.min(mouse.smoothedSpeed / 6, 1.0); // 0 (still) to 1.0 (moving)
 
       // 1. Dynamic Cursor Ambient Light Glow (Fluid motion bloom & breathing atmosphere)
-      const baseRadius = isDark ? 280 : 250;
+      const baseRadius = isDark ? 280 : 270;
       const breath = reduceMotion ? 0 : Math.sin(time * 0.03) * 12;
       const glowRadius = baseRadius + speedBoost * 70 + breath;
 
@@ -212,12 +206,12 @@ export default function BackgroundCursorAnimation() {
         radialGrad.addColorStop(0.65, `rgba(185, 142, 55, 0.02)`);
         radialGrad.addColorStop(1, "rgba(12, 10, 8, 0)");
       } else {
-        // Warm radiant amber-gold layered bloom
-        const alphaCenter = 0.17 + speedBoost * 0.14;
-        const alphaMid = 0.08 + speedBoost * 0.07;
-        radialGrad.addColorStop(0, `rgba(215, 160, 52, ${alphaCenter})`);
-        radialGrad.addColorStop(0.32, `rgba(198, 142, 45, ${alphaMid})`);
-        radialGrad.addColorStop(0.68, `rgba(180, 130, 40, 0.025)`);
+        // Luminous warm amber-sunlight bloom that clearly radiates across the canvas
+        const alphaCenter = 0.28 + speedBoost * 0.16;
+        const alphaMid = 0.13 + speedBoost * 0.08;
+        radialGrad.addColorStop(0, `rgba(235, 172, 48, ${alphaCenter})`);
+        radialGrad.addColorStop(0.32, `rgba(220, 155, 38, ${alphaMid})`);
+        radialGrad.addColorStop(0.68, "rgba(210, 148, 32, 0.035)");
         radialGrad.addColorStop(1, "rgba(244, 238, 227, 0)");
       }
 
@@ -235,8 +229,10 @@ export default function BackgroundCursorAnimation() {
           ripples.splice(r, 1);
           continue;
         }
-        ctx.strokeStyle = dotColor(rp.alpha * 0.6);
-        ctx.lineWidth = 1.2;
+        ctx.strokeStyle = isDark
+          ? dotColor(rp.alpha * 0.6)
+          : `rgba(198, 138, 36, ${rp.alpha * 0.7})`;
+        ctx.lineWidth = isDark ? 1.2 : 1.4;
         ctx.beginPath();
         ctx.arc(rp.x, rp.y, rp.radius, 0, Math.PI * 2);
         ctx.stroke();
@@ -277,7 +273,7 @@ export default function BackgroundCursorAnimation() {
         const twinkle = reduceMotion
           ? 1
           : 0.8 + 0.2 * Math.sin(time * p.phaseSpeed + p.phase);
-        let alpha = (0.35 + p.z * 0.55) * twinkle;
+        let alpha = (isDark ? 0.35 + p.z * 0.55 : 0.52 + p.z * 0.45) * twinkle;
 
         // Catch ambient cursor light illumination
         const cdx = mouse.x - p.x;
@@ -286,7 +282,9 @@ export default function BackgroundCursorAnimation() {
         if (cDistSq < glowRadius * glowRadius * 0.5) {
           const lightProximity = 1 - Math.sqrt(cDistSq) / (glowRadius * 0.7);
           if (lightProximity > 0) {
-            alpha += lightProximity * (0.24 + speedBoost * 0.22);
+            alpha +=
+              lightProximity *
+              (isDark ? 0.24 + speedBoost * 0.22 : 0.35 + speedBoost * 0.28);
           }
         }
 
@@ -306,7 +304,7 @@ export default function BackgroundCursorAnimation() {
 
         // Render Particle (Bokeh or Standard Disc)
         if (p.bokeh) {
-          const bokehR = p.radius * 3.2;
+          const bokehR = p.radius * (isDark ? 3.2 : 2.8);
           const bokehGrad = ctx.createRadialGradient(
             p.x,
             p.y,
@@ -315,7 +313,7 @@ export default function BackgroundCursorAnimation() {
             p.y,
             bokehR,
           );
-          bokehGrad.addColorStop(0, dotColor(alpha * 0.5));
+          bokehGrad.addColorStop(0, dotColor(alpha * (isDark ? 0.5 : 0.65)));
           bokehGrad.addColorStop(1, dotColor(0));
           ctx.fillStyle = bokehGrad;
           ctx.beginPath();
@@ -343,7 +341,7 @@ export default function BackgroundCursorAnimation() {
             const depthAvg = (p.z + p2.z) * 0.5;
             const lAlpha =
               (1 - pDist / 115) *
-              (isDark ? 0.2 : 0.26) *
+              (isDark ? 0.2 : 0.32) *
               (0.5 + depthAvg * 0.5);
 
             const mx = (p.x + p2.x) * 0.5;
@@ -356,7 +354,7 @@ export default function BackgroundCursorAnimation() {
             const cy = my + (ny / nLen) * bow;
 
             ctx.strokeStyle = `rgba(${themeColors.lineR}, ${themeColors.lineG}, ${themeColors.lineB}, ${lAlpha})`;
-            ctx.lineWidth = isDark ? 0.75 : 0.9;
+            ctx.lineWidth = isDark ? 0.75 : 0.95;
             ctx.beginPath();
             ctx.moveTo(p.x, p.y);
             ctx.quadraticCurveTo(cx, cy, p2.x, p2.y);
@@ -372,12 +370,14 @@ export default function BackgroundCursorAnimation() {
           const cDist = Math.sqrt(cDistSq);
           const cAlpha =
             (1 - cDist / 145) *
-            (isDark ? 0.36 : 0.44) *
+            (isDark ? 0.36 : 0.48) *
             (0.5 + p.z * 0.5) *
             (1 + speedBoost * 0.35);
 
           ctx.strokeStyle = `rgba(${themeColors.lineR}, ${themeColors.lineG}, ${themeColors.lineB}, ${cAlpha})`;
-          ctx.lineWidth = (isDark ? 0.95 : 1.15) + speedBoost * 0.4;
+          ctx.lineWidth = isDark
+            ? 0.95 + speedBoost * 0.4
+            : 1.15 + speedBoost * 0.35;
           ctx.beginPath();
           ctx.moveTo(p.x, p.y);
           ctx.lineTo(mouse.x, mouse.y);
@@ -443,7 +443,7 @@ export default function BackgroundCursorAnimation() {
         style={{
           background: isDark
             ? "radial-gradient(ellipse 90% 80% at 50% 45%, transparent 55%, rgba(0,0,0,0.35) 100%)"
-            : "radial-gradient(ellipse 90% 80% at 50% 45%, transparent 60%, rgba(120,95,65,0.10) 100%)",
+            : "radial-gradient(ellipse 90% 80% at 50% 45%, transparent 60%, rgba(140,120,95,0.06) 100%)",
         }}
       />
 
@@ -459,8 +459,8 @@ export default function BackgroundCursorAnimation() {
         }
         .aurora-dark.aurora-a { background: radial-gradient(circle, rgba(212,168,67,0.35), transparent 70%); }
         .aurora-dark.aurora-b { background: radial-gradient(circle, rgba(235,195,115,0.22), transparent 70%); }
-        .aurora-light.aurora-a { background: radial-gradient(circle, rgba(182,142,92,0.30), transparent 70%); }
-        .aurora-light.aurora-b { background: radial-gradient(circle, rgba(198,162,118,0.22), transparent 70%); }
+        .aurora-light.aurora-a { background: radial-gradient(circle, rgba(238,188,95,0.25), rgba(246,218,150,0.12) 50%, transparent 70%); }
+        .aurora-light.aurora-b { background: radial-gradient(circle, rgba(228,172,75,0.20), rgba(242,204,136,0.08) 50%, transparent 70%); }
         .aurora-a { top: -15%; left: -10%; animation: drift-a 34s ease-in-out infinite; }
         .aurora-b { bottom: -20%; right: -10%; animation: drift-b 42s ease-in-out infinite; }
         @keyframes drift-a {
