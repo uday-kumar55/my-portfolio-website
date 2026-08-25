@@ -72,7 +72,7 @@ export default function BackgroundCursorAnimation() {
       mouse.x += (mouse.targetX - mouse.x) * 0.08;
       mouse.y += (mouse.targetY - mouse.y) * 0.08;
 
-      // 1. Soft Cursor Glow
+      // 1. Soft Cursor Glow Aura (No attached cursor dot)
       const glowRadius = isDark ? 260 : 230;
       const radialGrad = ctx.createRadialGradient(
         mouse.x,
@@ -84,12 +84,14 @@ export default function BackgroundCursorAnimation() {
       );
 
       if (isDark) {
-        radialGrad.addColorStop(0, "rgba(212, 168, 67, 0.12)");
-        radialGrad.addColorStop(1, "rgba(212, 168, 67, 0)");
+        // Radiant celestial champagne gold aura
+        radialGrad.addColorStop(0, "rgba(245, 202, 100, 0.15)");
+        radialGrad.addColorStop(0.4, "rgba(218, 172, 70, 0.06)");
+        radialGrad.addColorStop(1, "rgba(218, 172, 70, 0)");
       } else {
-        // Warm sand/camel spotlight aura complementing the ivory-linen background
-        radialGrad.addColorStop(0, "rgba(182, 142, 92, 0.16)");
-        radialGrad.addColorStop(0.5, "rgba(198, 162, 118, 0.06)");
+        // Rich warm amber-gold aura complementary to the warm linen canvas
+        radialGrad.addColorStop(0, "rgba(206, 148, 48, 0.17)");
+        radialGrad.addColorStop(0.42, "rgba(218, 166, 72, 0.07)");
         radialGrad.addColorStop(1, "rgba(237, 229, 216, 0)");
       }
 
@@ -99,15 +101,15 @@ export default function BackgroundCursorAnimation() {
       ctx.fill();
 
       // Theme Colors:
-      // Dark Theme -> Radiant warm gold dots & lines (#ebc373 / #d4a843)
-      // Light Theme -> Rich warm camel/taupe sand tones (#9e7547 / #b38856) harmonious with the #fbf8f3 background
+      // Dark Theme -> Luminous warm champagne starlight gold (#f6d482 / #ecc066)
+      // Light Theme -> Rich, crisp warm amber-bronze (#b87e28 / #c98e32)
       const dotColor = isDark
-        ? "rgba(235, 195, 115, 0.75)"
-        : "rgba(158, 117, 71, 0.75)";
+        ? "rgba(246, 212, 130, 0.85)"
+        : "rgba(184, 126, 40, 0.82)";
 
-      const lineR = isDark ? 225 : 172;
-      const lineG = isDark ? 185 : 132;
-      const lineB = isDark ? 100 : 86;
+      const lineR = isDark ? 240 : 196;
+      const lineG = isDark ? 200 : 142;
+      const lineB = isDark ? 116 : 52;
 
       // 2. Update & Draw Particles and Connecting Lines
       for (let i = 0; i < particles.length; i++) {
@@ -148,9 +150,9 @@ export default function BackgroundCursorAnimation() {
           const pDist = Math.sqrt(pdx * pdx + pdy * pdy);
 
           if (pDist < 115) {
-            const alpha = (1 - pDist / 115) * (isDark ? 0.2 : 0.28);
+            const alpha = (1 - pDist / 115) * (isDark ? 0.22 : 0.28);
             ctx.strokeStyle = `rgba(${lineR}, ${lineG}, ${lineB}, ${alpha})`;
-            ctx.lineWidth = isDark ? 0.8 : 1.0;
+            ctx.lineWidth = isDark ? 0.8 : 0.95;
             ctx.beginPath();
             ctx.moveTo(p.x, p.y);
             ctx.lineTo(p2.x, p2.y);
@@ -160,9 +162,9 @@ export default function BackgroundCursorAnimation() {
 
         // Connect particle to cursor
         if (dist < 145) {
-          const alpha = (1 - dist / 145) * (isDark ? 0.35 : 0.45);
+          const alpha = (1 - dist / 145) * (isDark ? 0.38 : 0.44);
           ctx.strokeStyle = `rgba(${lineR}, ${lineG}, ${lineB}, ${alpha})`;
-          ctx.lineWidth = isDark ? 1.0 : 1.25;
+          ctx.lineWidth = isDark ? 1.05 : 1.2;
           ctx.beginPath();
           ctx.moveTo(p.x, p.y);
           ctx.lineTo(mouse.x, mouse.y);
